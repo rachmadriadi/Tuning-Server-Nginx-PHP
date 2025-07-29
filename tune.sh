@@ -132,17 +132,17 @@ calculate_resources() {
     
     # Penyesuaian berdasarkan workload type
     case $WORKLOAD_TYPE in
-        1) 
+        1)
             cpu_multiplier=$(( cpu_multiplier * 2 ))
             MEMORY_PER_WORKER=$(( 40 + EXPECTED_USERS / 500 ))
-            ;;
-        2) 
+        ;;
+        2)
             memory_multiplier=$(( memory_multiplier * 2 ))
             MEMORY_PER_WORKER=$(( 60 + EXPECTED_USERS / 300 ))
-            ;;
-        3) 
+        ;;
+        3)
             MEMORY_PER_WORKER=$(( 50 + EXPECTED_USERS / 400 ))
-            ;;
+        ;;
     esac
     
     # Hitung PHP-FPM workers
@@ -159,7 +159,7 @@ calculate_resources() {
     # Hitung parameter PHP
     if [[ $SERVER_MEMORY_GB -lt 2 ]]; then
         PHP_MEMORY_LIMIT="128M"
-    elif [[ $SERVER_MEMORY_GB -lt 8 ]]; then
+        elif [[ $SERVER_MEMORY_GB -lt 8 ]]; then
         PHP_MEMORY_LIMIT="$(( SERVER_MEMORY_MB / 8 ))M"
     else
         PHP_MEMORY_LIMIT="$(( SERVER_MEMORY_MB / 12 ))M"
@@ -276,14 +276,14 @@ http {
     types_hash_max_size 2048;
     server_tokens off;
     client_max_body_size 64M;
-    
+
     ##
     # Buffers
     ##
     client_body_buffer_size 16K;
     client_header_buffer_size 1k;
     large_client_header_buffers 4 8k;
-    
+
     ##
     # Timeouts
     ##
@@ -291,7 +291,7 @@ http {
     client_header_timeout 60;
     send_timeout 60;
     keepalive_requests 1000;
-    
+
     ##
     # Gzip
     ##
@@ -303,7 +303,7 @@ http {
     gzip_buffers 16 8k;
     gzip_http_version 1.1;
     gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
-    
+
     ##
     # File Cache
     ##
@@ -311,7 +311,7 @@ http {
     open_file_cache_valid 30s;
     open_file_cache_min_uses 2;
     open_file_cache_errors on;
-    
+
     ##
     # Virtual Host Configs
     ##
@@ -384,12 +384,12 @@ restart_services() {
     log "INFO" "Restarting services..."
     
     systemctl restart "php${PHP_VERSION}-fpm" && \
-        log "INFO" "PHP-FPM berhasil di-restart" || \
-        log "ERROR" "Gagal restart PHP-FPM"
+    log "INFO" "PHP-FPM berhasil di-restart" || \
+    log "ERROR" "Gagal restart PHP-FPM"
     
     systemctl restart nginx && \
-        log "INFO" "Nginx berhasil di-restart" || \
-        log "ERROR" "Gagal restart Nginx"
+    log "INFO" "Nginx berhasil di-restart" || \
+    log "ERROR" "Gagal restart Nginx"
     
     log "SUCCESS" "Services berhasil di-restart"
 }
