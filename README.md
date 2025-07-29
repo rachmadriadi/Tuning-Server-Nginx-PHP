@@ -67,7 +67,7 @@ sudo ./tune.sh --apply
 ## 🤝 Contributing
 Contributions are welcome! Whether it's reporting a bug, suggesting an improvement, or submitting a pull request — your help is appreciated.
 
-Please see CONTRIBUTING.md for guidelines.
+Please see [CONTRIBUTING.md](https://github.com/rachmadriadi/Tuning-Server-Nginx-PHP/blob/master/CONTRIBUTING.md) for guidelines.
 
 ## 📄 License
 This project is licensed under the MIT License.
