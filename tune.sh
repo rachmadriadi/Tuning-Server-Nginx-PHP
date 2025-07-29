@@ -478,4 +478,4 @@ main() {
 }
 
 # Jalankan program utama
-main
+mai
